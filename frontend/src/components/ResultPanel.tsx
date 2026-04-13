@@ -78,7 +78,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Archivos presentes (${details.present_files.length})`}
             icon={<CheckCircle size={16} color="var(--green)" />}
-            id="present"
             open={openSection === "present"}
             onToggle={() => toggle("present")}
           >
@@ -98,7 +97,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Carpetas presentes (${details.present_folders.length})`}
             icon={<FolderOpen size={16} color="var(--green)" />}
-            id="folders"
             open={openSection === "folders"}
             onToggle={() => toggle("folders")}
           >
@@ -115,7 +113,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Coincidencias aproximadas (${details.fuzzy_matches.length})`}
             icon={<AlertTriangle size={16} color="var(--yellow)" />}
-            id="fuzzy"
             open={openSection === "fuzzy"}
             onToggle={() => toggle("fuzzy")}
           >
@@ -135,7 +132,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Archivos faltantes (${details.missing_files.length})`}
             icon={<XCircle size={16} color="var(--red)" />}
-            id="missing"
             open={openSection === "missing"}
             onToggle={() => toggle("missing")}
           >
@@ -152,7 +148,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Carpetas faltantes (${details.missing_folders.length})`}
             icon={<XCircle size={16} color="var(--red)" />}
-            id="missing-folders"
             open={openSection === "missing-folders"}
             onToggle={() => toggle("missing-folders")}
           >
@@ -169,7 +164,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Archivos extra (${details.extra_files.length})`}
             icon={<File size={16} color="var(--muted)" />}
-            id="extra"
             open={openSection === "extra"}
             onToggle={() => toggle("extra")}
           >
@@ -186,7 +180,6 @@ export default function ResultPanel({ data, onReset }: Props) {
           <Section
             title={`Estructura del ZIP (${zip_structure.length} entradas)`}
             icon={<FileTree entries={[]} isIcon />}
-            id="tree"
             open={openSection === "tree"}
             onToggle={() => toggle("tree")}
           >
