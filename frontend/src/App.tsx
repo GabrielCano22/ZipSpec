@@ -6,7 +6,7 @@ import DropZone from "./components/DropZone";
 import Options from "./components/Options";
 import ResultPanel from "./components/ResultPanel";
 import StatusBar from "./components/StatusBar";
-import { validateZip } from "./lib/api";
+import { validateZip } from "./lib/api.ts";
 import type { AppState, ValidationResult } from "./types";
 
 export default function App() {

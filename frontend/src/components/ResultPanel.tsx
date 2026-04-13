@@ -218,14 +218,12 @@ function Stat({ label, value, color }: { label: string; value: number; color?: s
 function Section({
   title,
   icon,
-  id,
   open,
   onToggle,
   children,
 }: {
   title: string;
   icon: React.ReactNode;
-  id: string;
   open: boolean;
   onToggle: () => void;
   children: React.ReactNode;

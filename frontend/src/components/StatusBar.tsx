@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Wifi, WifiOff } from "lucide-react";
-import { healthCheck } from "../lib/api";
+import { healthCheck } from "../lib/api.ts";
 
 export default function StatusBar() {
   const [online, setOnline] = useState<boolean | null>(null);
