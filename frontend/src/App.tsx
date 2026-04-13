@@ -117,8 +117,7 @@ export default function App() {
         </AnimatePresence>
 
         <footer className="footer">
-          <span>ZipSpec v2.0</span>
-          <span>Python + FastAPI + React</span>
+          <span>© 2022 Gabriel Cano | Built with React, FastAPI & Python</span>
         </footer>
       </main>
     </div>
