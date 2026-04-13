@@ -1,0 +1,12 @@
+description: Smoke test
+files:
+- main.py
+- requirements.txt
+- README.md
+- src/utils.py
+- src/models.py
+- tests/test_main.py
+folders:
+- src
+- tests
+name: Test project

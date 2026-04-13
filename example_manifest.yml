@@ -1,0 +1,15 @@
+name: Mi Proyecto
+description: Requisitos de entrega del proyecto
+required_files:
+- main.py
+- README.md
+- requirements.txt
+- src/utils.py
+- tests/test_main.py
+required_folders:
+- src/
+- tests/
+ignore:
+- __pycache__/
+- '*.pyc'
+- .DS_Store

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZipSpec — test_project.zip</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f0f11; color: #e2e8f0; line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+header { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid #1e1e2e; }
+header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;
+  background: linear-gradient(135deg, #6366f1, #a855f7, #d946ef);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+header p { color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; }
+.meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0;
+  background: #1a1a2e; border-radius: 12px; padding: 1rem 1.5rem; border: 1px solid #2d2d4e; }
+.meta-item { display: flex; flex-direction: column; }
+.meta-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; }
+.meta-value { font-size: 0.9rem; color: #94a3b8; word-break: break-all; }
+.verdict { border-radius: 16px; padding: 1.5rem 2rem; margin: 2rem 0; border: 1px solid; }
+.verdict.pass  { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+.verdict.warn  { background: rgba(234,179,8,0.08); border-color: rgba(234,179,8,0.3); }
+.verdict.fail  { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+.verdict-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
+.verdict.pass .verdict-title  { color: #4ade80; }
+.verdict.warn .verdict-title  { color: #facc15; }
+.verdict.fail .verdict-title  { color: #f87171; }
+.score-bar-wrap { margin: 0.8rem 0; }
+.score-label { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.4rem; }
+.score-bar { background: #1e1e2e; border-radius: 999px; height: 12px; overflow: hidden; }
+.score-fill { height: 100%; border-radius: 999px; transition: width 1s ease; }
+.score-fill.green { background: linear-gradient(90deg, #4ade80, #22c55e); }
+.score-fill.yellow { background: linear-gradient(90deg, #facc15, #eab308); }
+.score-fill.red { background: linear-gradient(90deg, #f87171, #ef4444); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.stat-card { background: #1a1a2e; border: 1px solid #2d2d4e; border-radius: 12px; padding: 1rem; text-align: center; }
+.stat-number { font-size: 2rem; font-weight: 700; }
+.stat-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.green { color: #4ade80; } .yellow { color: #facc15; } .red { color: #f87171; } .blue { color: #60a5fa; } .gray { color: #64748b; }
+section { margin: 2rem 0; }
+section h2 { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  color: #94a3b8; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e1e2e; }
+.file-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.file-list li { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem;
+  border-radius: 8px; font-size: 0.875rem; font-family: 'Cascadia Code', 'Fira Code', monospace; }
+.file-list li.present { background: rgba(34,197,94,0.06); color: #4ade80; }
+.file-list li.missing { background: rgba(239,68,68,0.06); color: #f87171; }
+.file-list li.fuzzy   { background: rgba(234,179,8,0.06); color: #facc15; }
+.file-list li.extra   { background: rgba(100,116,139,0.06); color: #64748b; }
+.file-list .badge { font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 999px; font-family: sans-serif; }
+.badge.exact { background: rgba(34,197,94,0.15); color: #4ade80; }
+.badge.name  { background: rgba(234,179,8,0.15); color: #facc15; }
+.structure { background: #1a1a2e; border: 1px solid #2d2d4e; border-radius: 12px; padding: 1rem 1.5rem;
+  font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.8rem; overflow-x: auto; }
+.structure div { padding: 2px 0; color: #94a3b8; }
+.structure .dir { color: #60a5fa; }
+footer { text-align: center; padding: 2rem 0; color: #3d3d5c; font-size: 0.8rem; border-top: 1px solid #1e1e2e; margin-top: 3rem; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ZipSpec</h1>
+      <p>Reporte de validación de archivos comprimidos</p>
+    </header>
+
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Archivo ZIP</span>
+        <span class="meta-value">test_project.zip</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Fuente (Manifest YAML)</span>
+        <span class="meta-value">test_manifest.yml</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Generado</span>
+        <span class="meta-value">2026-04-13 13:52:39</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Modo</span>
+        <span class="meta-value">Normal</span>
+      </div>
+    </div>
+
+    <div class="verdict pass">
+      <div class="verdict-title">✔ Cumple completamente</div>
+      <div class="score-bar-wrap">
+        <div class="score-label">Cumplimiento: 100.0%</div>
+        <div class="score-bar">
+          <div class="score-fill green" style="width: 100.0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number blue">6</div>
+        <div class="stat-label">En ZIP</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Requeridos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number green">8</div>
+        <div class="stat-label">Presentes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number red">0</div>
+        <div class="stat-label">Faltantes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number yellow">0</div>
+        <div class="stat-label">Fuzzy</div>
+      </div>
+    </div>
+
+    
+    <section>
+      <h2>Presentes (8)</h2>
+      <ul class="file-list"><li class="present">✔ README.md <span class="badge exact">exacto</span></li><li class="present">✔ main.py <span class="badge exact">exacto</span></li><li class="present">✔ requirements.txt <span class="badge exact">exacto</span></li><li class="present">✔ src/models.py <span class="badge exact">exacto</span></li><li class="present">✔ src/utils.py <span class="badge exact">exacto</span></li><li class="present">✔ tests/test_main.py <span class="badge exact">exacto</span></li><li class="present">✔ 📁 src</li><li class="present">✔ 📁 tests</li></ul>
+    </section>
+    
+    
+    
+
+    <section>
+      <h2>Estructura del ZIP</h2>
+      <div class="structure"><div class="">📄 README.md</div>
+<div class="">📄 main.py</div>
+<div class="">📄 requirements.txt</div>
+<div class="">&nbsp;&nbsp;&nbsp;&nbsp;📄 models.py</div>
+<div class="">&nbsp;&nbsp;&nbsp;&nbsp;📄 utils.py</div>
+<div class="">&nbsp;&nbsp;&nbsp;&nbsp;📄 test_main.py</div>
+</div>
+    </section>
+
+    <footer>Generado por ZipSpec v2.0.0 — 2026-04-13 13:52:39</footer>
+  </div>
+</body>
+</html>

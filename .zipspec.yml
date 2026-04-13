@@ -1,0 +1,27 @@
+# ─────────────────────────────────────────────────────────────
+# Configuración de ZipSpec (.zipspec.yml)
+# Coloca este archivo en el directorio de trabajo o en tu home.
+# Los valores aquí definidos son los defaults del proyecto.
+# ─────────────────────────────────────────────────────────────
+
+# Formato de salida por defecto: terminal | json | html
+default_format: terminal
+
+# Umbral de similitud para fuzzy matching (0.0 - 1.0)
+fuzzy_threshold: 0.82
+
+# Modo estricto: falla si hay archivos extra en el zip
+strict: false
+
+# Mostrar archivos extra presentes en el zip pero no requeridos
+show_extra: false
+
+# Patrones de archivos a ignorar dentro de cada zip
+ignore_patterns:
+  - "__pycache__/"
+  - ".DS_Store"
+  - "Thumbs.db"
+  - ".git/"
+  - "*.pyc"
+  - "*.pyo"
+  - ".gitignore"

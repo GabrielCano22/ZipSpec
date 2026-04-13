@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ZipSpec - validacion basica",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["tarea_ejemplo.zip", "example_manifest.yml"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "ZipSpec - show extra",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["tarea_ejemplo.zip", "example_manifest.yml", "--show-extra"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "ZipSpec - formato JSON",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["tarea_ejemplo.zip", "example_manifest.yml", "--format", "json"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "ZipSpec - reporte HTML",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["tarea_ejemplo.zip", "example_manifest.yml", "--format", "html", "--save", "reporte.html"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "ZipSpec - modo strict",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["tarea_ejemplo.zip", "example_manifest.yml", "--strict", "--show-extra"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "ZipSpec - batch",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/zipspec.py",
+      "args": ["--batch", "test_data/", "example_manifest.yml"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
